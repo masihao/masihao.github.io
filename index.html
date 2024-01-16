@@ -8,38 +8,63 @@
     <meta name="description" content="马思浩的主页 Sihao's homepage">  <!--告诉搜索引擎网站的主要内容-->
     <meta name="author" content="Sihao Ma">  <!--作者-->
     <title> Sihao's Homepage </title>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      header{
+        text-align: center;
+        font-size: 35px;
+      }
+      .main{
+        padding: 20px;
+        float: left;
+        width: 70%;
+      }
+      .right{
+        padding: 20px;
+        float: right;
+        width: 30%;
+      }
+      @media screen and (max-width: 800px){
+        .main, .right{
+          width: 100%;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <head>
-      <center>
-        <h1> 欢迎来到马思浩的个人主页！ </h1>
-        <h1> Welcome to Sihao Ma's Homepage! </h1>
-      </center>
+    <header>
+      <h1> 欢迎来到马思浩的个人主页！ </h1>
+      <h1> Welcome to Sihao Ma's Homepage! </h1>
     </header>
     <section>
       <h2>About Me</h2>
       <p>I am a fourth-year graduate student in the <a href="https://math.nd.edu/">Department of Mathematics</a> at the University of Notre Dame. My advisor is <a href="https://www3.nd.edu/~mbehren1/">Mark Behrens</a>. <br>I am mainly interested in computations in stable homotopy theory, from chromatic, equivariant, and motivic aspects.</p>
       <p>My email address is sma2[AT]nd[DOT]edu.
     </section>
-    <section>
+    <div class="right">
+      <h2>Test</h2>
+    </div>
+    <div class="main">
       <h2> Papers/Preprints</h2>
       <ul>
         <li>The Borel and genuine C_2-equivariant Adams spectral sequences. [<a href="https://arxiv.org/abs/2208.12883">arXiv:2208.12883</a>].</li>
         <li>A proof of the generalized geometric boundary theorem using filtered spectra. [<a href="https://arxiv.org/abs/2309.14650">arXiv:2308.14650</a>].</li>
       </ul>
-    </section>
-    <section>
+    </div>
+    <div class="main">
       <h2>Survey Articles</h2>
       <ul>
         <li>Homotopy of <i>tmf</i> at the prime 2. [<a href="Homotopy of tmf at the prime 2.pdf">PDF</a>].<br>(Wrote when pursuing my Bachelor's degree at Peking University in 2019.)</li>
       </ul>
-    </section>
-    <section>
+    </div>
+    <div class="main">
       <h2>Charts</h2>
       <ul>
         <li>C_2-equivariant Borel Adams E_2-page in coweights -2~13. [<a href="Charts.pdf">PDF</a>].</li>
       </ul>
-    </section>
+    </div>
   </body>
 </html>
