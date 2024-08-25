@@ -1,0 +1,235 @@
+\documentclass[10 pt]{article}
+\usepackage{calc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{hyperref}
+\usepackage{tabularray}
+
+\hypersetup{colorlinks=true, urlcolor=cyan}
+
+\pagenumbering{gobble}
+
+
+
+\pagestyle{fancy}               % Fancy headers and footers
+\lhead{}
+\chead{{\it Curriculum Vitae for Sihao Ma}}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\setlength{\headheight}{13.6pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+%\pagestyle{empty}		% Supress page numbers
+\setlength{\parindent}{0pt}	% Supress indentation
+\setlength{\parskip}{0pt}	% Set skip between paragraphs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TopMatter: Write your name in big letters, then the words 
+%             CV and the date
+% USAGE:
+%	\TopMatter{NAME}{DATE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\TopMatter[2]{
+	\begin{center}
+		{\Large #1}\par
+		\vspace{1ex}
+		Curriculum Vitae\par
+		#2
+	\end{center}}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Address: Write two columns of addresses (one on left is usually
+%           your business address and the one on right is usually your
+%           personal address).  The LONGESTRIGHTLINE is used for spacing
+%           calculations and should be the longest line in the right hand
+%           address.
+% USAGE:    
+%	\Address{LEFTADDRESS}{RIGHTADDRESS}{LONGESTRIGHTLINE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Address[3]{
+	\begin{tabular}[t]{@{}p{\linewidth - \widthof{#3}}@{}p{\widthof{#3}}@{}}
+		{\raggedright #1} & {\raggedright #2}
+	\end{tabular}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Degree: Typeset a degree
+% USAGE:
+%	\Degree{SCHOOL}{LOCATION}{DEGREE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Degree[3]{
+	{\bf #1}, #2\par
+	#3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Job: Typeset a job
+% USAGE:
+%       \Job{INSTITUTION}{LOCATION}{TITLE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Job[3]{
+        {\bf #1}, #2\par
+        #3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcounter{PublicationCounter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ResetPublications: Put at the beginning of a list of publications
+% USAGE:
+%	\ResetPublications{NUMBER}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\ResetPublications[1]{
+	\setcounter{PublicationCounter}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Publication: Typeset a publication
+% USAGE:
+%       \Publication[COAUTHORS]{TITLE}{PUBLICATION_STATUS}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Publication[3][]{
+        \NumberedItem{\thePublicationCounter}{\ifthenelse{\equal{#1}{}}{A. Putman\par #2\par #3}{#1\par #2\par #3}}
+        \addtocounter{PublicationCounter}{-1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note: Typeset a note
+% USAGE:
+%       \Note{TITLE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Note[1]{
+        \NumberedItem{\thePublicationCounter}{#1}
+        \addtocounter{PublicationCounter}{-1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Talk: Typeset a talk
+% USAGE:
+%	\Talk{DATE}{LOCATION}{TITLE}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Talk[3]{
+	\begin{tabular}[t]{@{\hspace{0.25in}}p{\LongestDate - 0.25in}@{}p{\linewidth - \LongestDate}@{}}
+	#1 & #2\\
+	   & {\it #3}\\
+	\end{tabular}\par}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand\LongestDate{\widthof{7777 (Spring)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DatedItem: A date followed by an item
+% USAGE:
+%	\DatedItem{DATE}{ITEM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\DatedItem[2]{
+	\begin{tabular}[t]{@{\hspace{0.125in}}p{\linewidth - \LongestDate - 1.575in}@{\hspace{0.25in}}p{\LongestDate}@{}}
+	{\raggedright #1}	&#2  \\
+	\end{tabular}\par}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NumberedItem: A number followed by an item (max 2 digit number)
+% USAGE:
+%       \NumberedItem{NUM}{ITEM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\NumberedItem[2]{
+        \begin{tabular}[t]{@{\hspace{0.25in}}p{\widthof{999}}@{\hspace{0.025in}}p{\linewidth - \widthof{999} - 0.375in}@{}}
+                {\raggedright #1.} & {\raggedright #2}\\
+        \end{tabular}\par}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PrimaryHeading: The primary heading for a section
+% USAGE:
+%	\PrimaryHeading[REMARK]{ITEM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\PrimaryHeading[2][]{
+	\medskip{\bf #2} #1\par}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SecondaryHeading: A secondary heading for a section
+% USAGE:
+%	\SecondaryHeading{ITEM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\SecondaryHeading[1]{
+	\begin{tabular}[t]{@{\hspace{0.25in}}p{\linewidth - 0.25in}@{}}
+		{\bf #1}\\
+	\end{tabular}\par}
+
+\newcommand\LongestLeft{\widthof{Conferences}}
+\newcommand\LongestRight{\widthof{08/2020-present}}
+
+\begin{document}
+\thispagestyle{plain}
+\TopMatter{Sihao Ma}{August, 2024}
+
+\Address
+{Department of Mathematics\par
+University of Notre Dame\par
+255 Hurley Hall\par
+Notre Dame, IN 46556} 
+{{\href{https://masihao.github.io/}{\tt https://masihao.github.io/}}\par
+ {\href{mailto:sma2@nd.edu}{\tt sma2@nd.edu}}}
+{{\tt https://masihao.github.io/}}
+
+\vspace{1em}
+
+\begin{tblr}{@{} Q[l,0.18\linewidth] @{} Q[l,0.65\linewidth] @{} Q[r,0.17\linewidth] @{}} 
+\textsc{Research} & Homotopy theory, especially in computational and chromatic aspects, & \\
+\textsc{Interests} & with tools from equivariant and motivic homotopy theory. &  \\
+ & & \\
+ \textsc{Education}    & \textbf{University of Notre Dame} &  Indiana, USA \\ 
+ & Ph.D. candidate in Mathematics &  2020-present \\
+ & Advisor: Mark Behrens &  \\
+ & \textbf{Peking University}  &  Bejing, China \\
+ & B.S. in Mathematics &  2016-2020 \\
+ & Advisor: Houhong Fan & \\
+ & & \\ 
+\textsc{Papers} & \textit{A proof of the generalized geometric boundary theorem using filtered spectra.} 2024. To appear in {\it Topology and its Applications.} & \href{https://arxiv.org/abs/2309.14650}{arXiv:2309.14650} \\
+ & \textit{The Borel and genuine $C_2$-equivariant Adams spectral sequences.} \quad Last updated: 05/23/2024. & \href{https://arxiv.org/abs/2208.12883}{arXiv:2208.12883} \\
+ & & \\
+\textsc{Talks} & \textit{The Borel and genuine $C_2$-equivariant Adams spectral sequences.} & \\ 
+ & Notre Dame Graduate Student Topology Seminar & 03/2024\\
+ & \textit{The Borel and genuine $C_2$-equivariant Adams spectral sequences.} & \\ 
+ & UCSD Topology Seminar & 02/2024 \\
+ & \textit{The Borel and genuine $C_2$-equivariant Adams spectral sequences.} & \\ 
+ & AMS Sectional Meeting Special Session on Homotopy Theory & 10/2023 \\
+ & \textit{The Borel and genuine $C_2$-equivariant Adams spectral sequences.} & \\ 
+ & UCSD Topology Seminar & 03/2023 \\
+ & & \\
+\textsc{Teaching} & Teaching Assistant, Homor Calculus III, University of Notre Dame & Fall 2023\\
+\textsc{Experience} & Instructor, Calculus B, University of Notre Dame & Spring 2023 \\
+ & Teaching Assistant, Calculus II, University of Notre Dame & Fall 2022\\
+ & Teaching Assistant, Linear Algebra and Differential Equations, University of Notre Dame & Spring 2022 \\
+ & Teaching Assistant, Calculus I, University of Notre Dame & Fall 2021 \\
+ & Teaching Assistant, Mathematical Analysis II, Peking University & Spring 2020 \\
+ & Teaching Assistant, Mathematical Analysis I, Peking University & Fall 2019 \\
+  & & \\
+\textsc{Undergraduate} &  \textit{The homotopy of $tmf$ at the prime $2$.} & \href{https://masihao.github.io/Homotopy of tmf at the prime 2.pdf}{PDF}\\
+\textsc{Research} & Advised by Zhouli Xu & Summer 2019 \\
+\end{tblr}
+
+
+
+
+
+
+
+\end{document}
